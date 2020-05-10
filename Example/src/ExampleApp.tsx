@@ -19,6 +19,8 @@ function App(Props: WrappedComponentProps) {
   const { user, signOut, signInWithGoogle } = Props;
   const [backendRes, setBackendRes] = useState<string>("no response");
 
+  // Sample backend request with JWT
+  // JWT will need to be validated server side
   const reqBackend = async () => {
     const result = await user?.getIdTokenResult();
     axios
