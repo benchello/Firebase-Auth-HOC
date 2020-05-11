@@ -15,10 +15,12 @@ export type FirebaseHOCState = {
   error?: string;
 };
 
-export default function withFireAuth<P extends object>(firebaseConfig: {}) {
-  const firebaseApp = firebase.initializeApp(firebaseConfig);
+export default function withFireAuth<P extends object>(
+  firebaseAppAuth: firebase.auth.Auth
+) {
+  // const firebaseApp = firebase.initializeApp(firebaseConfig);
   const provider = new firebase.auth.GoogleAuthProvider();
-  const firebaseAppAuth = firebaseApp.auth();
+  // const firebaseAppAuth = firebaseApp.auth();
 
   return (WrappedComponent: React.ComponentType<P & WrappedComponentProps>) => {
     return class FirebaseHOC extends React.PureComponent<P, FirebaseHOCState> {

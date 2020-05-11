@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import withFireAuth, { WrappedComponentProps } from "./withFireAuth";
-
+import firebase from "firebase";
 import axios from "axios";
 
 const firebaseConfig = {
@@ -14,6 +14,9 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseAppAuth = firebaseApp.auth();
 
 function App(Props: WrappedComponentProps) {
   const { user, signOut, signInWithGoogle } = Props;
@@ -60,4 +63,4 @@ function App(Props: WrappedComponentProps) {
   );
 }
 
-export default withFireAuth(firebaseConfig)(App);
+export default withFireAuth(firebaseAppAuth)(App);
